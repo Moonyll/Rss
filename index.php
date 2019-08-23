@@ -1,3 +1,11 @@
+<?php
+session_start();
+$_SESSION['prenom'] = 'felix';
+$_SESSION['nom'] = 'chat';
+$_SESSION['couleur'] = 'noir';
+$_SESSION['nombre'] = 0;
+
+?>
 <!DOCTYPE html>
   <html>
     <head>
@@ -19,6 +27,30 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
+<!-- Formulaire Connexion -->
+<?php if (!isset($_POST["newform"])) { ?>
+<!--  -->
+<form method="post" action="index.php" onsubmit="getParameters()">
+<fieldset>
+        <legend>Connexion</legend>
+<label>Nom</label><br><input type="text" name="prenom" /><br>
+<label>Prénom</label><br><input type="text" name="nom" /><br>
+<div class="input-field col s12">
+        <select name="couleur">
+            <option value="black">Noir</option>
+            <option value="red">Rouge</option>
+            <option value="blue">Bleu</option>
+        </select>
+        <label>Choix du design</label>
+</div>
+<label>Nombre d'articles</label><br><input type="number" name="nombre" min="3" max="8" step="1"/><br>
+<br>
+<input type="submit" name="newform" value="Se Connecter" id="formulaire">
+</fieldset>
+</form>
+<!--  -->
+<?php } ?>
+
 <!-- Méthode pour récupérer un flux rss-->
 <?php
 function getRSS($url)
@@ -45,6 +77,14 @@ echo '</ul>';
 }
 ?>
 <!-- Fin Méthode-->
+<?php
+$color = $_POST['couleur'];
+var_dump($color);
+?>
+
+
+<?php if (isset($_POST["newform"])) { ?>
+  <div id="colorD"><?=$_POST['couleur']?></div>
     <div class="row">
     <div class="col s8 m8 l8 offset-s2 offset-m2 offset-l2 blue lighten-1"><p class="center">Super Rss Reader</p></div>
     </div>
@@ -57,7 +97,7 @@ echo '</ul>';
         <li><a href="collapsible.html">Science & Recherhe</a></li>
       </ul>
        <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Nom Prénom</a></li>
+        <li><a href="sass.html"><?=$_SESSION['prenom']?> <?=$_SESSION['nom']?></a></li>
         <li><a href="badges.html">Paramètres</a></li>
         <li><a href="badges.html">Déconnexion</a></li>
       </ul>
@@ -92,8 +132,13 @@ echo '</ul>';
     </div>
   </div>
 </div>
+<?php } ?>
 <!-- Script pour ouvrir modal -->
 <script>
+$(document).ready(function () {
+      $('select').formSelect();
+    });
+
 $(document).ready(function(){
   $('a').click(function(){
   var dis = $(this).attr('value');
@@ -102,6 +147,19 @@ $(document).ready(function(){
   $('#urlA').attr('href',url);
   $('.modal').modal();
    });
+});
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<script>
+$(document).ready(function getParameters()
+{
+    var newColor = $('#colorD').text();
+    alert(newColor); 
+    $(body).css('background-color',newColor);
+    alert($(body).css('background-color').val());
+}
 });
 </script>
 <!-- Fin du script pour la modal -->
