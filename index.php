@@ -1,7 +1,6 @@
 <!DOCTYPE html>
   <html>
     <head>
-    <!-- Materialize.css-->
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
@@ -9,19 +8,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- For the modal -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-      
       <!-- Browser website is optimized for mobile-->
       <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-
 <!-- Méthode pour récupérer un flux rss-->
 <?php
 function getRSS($url)
@@ -39,17 +36,15 @@ foreach ($rss->channel->item as $item)
  echo '<li><img src="'.$img.'" class="pics" width="40" height="30"/></li>';
  echo '<li>'.$item->title.'</li>';
  echo '<li>'.$date.'</li>';
- echo '<li><a href="'.$item->link.'">'.'Aller vers Article'.'</a></li>';
- echo '<a class="waves-effect waves-light btn blue lighten-1 modal-trigger" href="#demo-modal-fixed-footer">Ouvrir description de l\'Article</a>';
- echo '<li><br>';
- var_dump($des);
+ echo '<li value="'.$item->link.'"><a href="'.$item->link.'">'.'Aller vers Article'.'</a></li>';
+ // Modal Trigger
+ echo '<a class="waves-effect waves-light btn blue lighten-1 modal-trigger" href="#modes" value="'.$des.'">'."Ouvrir description de l'Article".'</a>';
+ echo '<li id="1">'.$des.'</li>';
 }
 echo '</ul>';
 }
-
 ?>
 <!-- Fin Méthode-->
-					
     <div class="row">
     <div class="col s8 m8 l8 offset-s2 offset-m2 offset-l2 blue lighten-1"><p class="center">Super Rss Reader</p></div>
     </div>
@@ -81,29 +76,35 @@ echo '</ul>';
     <?php getRSS("https://www.01net.com/rss/actualites/science-recherche/")?>
     </div>
   </div>
-
-  <h3>Modal</h3>
-<!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn blue lighten-1 modal-trigger" href="#demo-modal-fixed-footer">Ouvrir description de l'Article</a>
-
-  <!-- Modal Structure -->
-  <div id="demo-modal-fixed-footer" class="modal modal-fixed-footer">
+   <!-- Modal Structure -->
+  <div id="modes" class="modal modal-fixed-footer">
     <div class="modal-content">
-      <h4>Modal with Fixed Footer</h4>
-      <p><?=$des?></p>      
-      
+      <h4>Description de l'article</h4>
+      <p id="modisp">test :
+      <?php
+      echo $des;
+      ?>
+      </p>      
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close btn teal lighten-1">Aller vers l'article</a>
-      <a href="#!" class="modal-action modal-close btn teal darken-2">Fermer</a>
+      <a href="toto" class="modal-action modal-close btn teal lighten-1" id="urlA">Aller vers l'article</a>
+      <a href="index.php" class="modal-action modal-close btn teal darken-2">Fermer</a>
     </div>
   </div>
 </div>
+<!-- Script pour ouvrir modal -->
 <script>
 $(document).ready(function(){
-    $('.modal').modal();
-  })
+  $('a').click(function(){
+  var dis = $(this).attr('value');
+  var url = $(this).prev('li').attr('value');
+  $('#modisp').text(dis);
+  $('#urlA').attr('href',url);
+  $('.modal').modal();
+   });
+});
 </script>
-   </body>
-  </html>
+<!-- Fin du script pour la modal -->
+</body>
+</html>
 
