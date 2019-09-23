@@ -1,14 +1,15 @@
 <?php
 session_start();
-$_SESSION['prenom'] = 'felix';
-$_SESSION['nom'] = 'chat';
-$_SESSION['couleur'] = 'noir';
-$_SESSION['nombre'] = 0;
+$_SESSION['prenom'] = $_POST['prenom'];
+$_SESSION['nom'] = $_POST['nom'];
+$_SESSION['couleur'] = $_POST['couleur'];
+$_SESSION['nombre'] = $_POST['nombre'];
 
 ?>
 <!DOCTYPE html>
   <html>
     <head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
@@ -30,16 +31,16 @@ $_SESSION['nombre'] = 0;
 <!-- Formulaire Connexion -->
 <?php if (!isset($_POST["newform"])) { ?>
 <!--  -->
-<form method="post" action="index.php" onsubmit="getParameters()">
+<form id="newfr" method="post" action="index.php">
 <fieldset>
         <legend>Connexion</legend>
 <label>Nom</label><br><input type="text" name="prenom" /><br>
 <label>Prénom</label><br><input type="text" name="nom" /><br>
 <div class="input-field col s12">
-        <select name="couleur">
-            <option value="black">Noir</option>
-            <option value="red">Rouge</option>
-            <option value="blue">Bleu</option>
+        <select id="colorChoice" name="couleur">
+            <option value="#d6d6c2">Noir</option>
+            <option value="#ff9999">Rouge</option>
+            <option value="#b3f0ff">Bleu</option>
         </select>
         <label>Choix du design</label>
 </div>
@@ -50,41 +51,53 @@ $_SESSION['nombre'] = 0;
 </form>
 <!--  -->
 <?php } ?>
-
+<!--Changememnt de la couleur du document-->
+<?php
+if(isset($_POST['couleur']))
+{
+$color = $_POST['couleur'];
+echo '<body style="background-color: '.$color.'">';
+}
+?>
 <!-- Méthode pour récupérer un flux rss-->
 <?php
-function getRSS($url)
+// Gestion du nombre d'articles
+if(isset($_POST['nombre']))
 {
-$url1 = "https://www.01net.com/rss/actualites/science-recherche/"; /* insérer ici l'adresse du flux RSS de votre choix */
-$url;
-$rss = simplexml_load_file($url);
-echo '<ul class = "collection with-header">';
-foreach ($rss->channel->item as $item)
-{
- $datetime = date_create($item->pubDate);
- $date = date_format($datetime, 'd M Y, H\hi');
- $img = $item->enclosure['url'];
- $des = strval($item->description);
- echo '<li><img src="'.$img.'" class="pics" width="40" height="30"/></li>';
- echo '<li>'.$item->title.'</li>';
- echo '<li>'.$date.'</li>';
- echo '<li value="'.$item->link.'"><a href="'.$item->link.'">'.'Aller vers Article'.'</a></li>';
- // Modal Trigger
- echo '<a class="waves-effect waves-light btn blue lighten-1 modal-trigger" href="#modes" value="'.$des.'">'."Ouvrir description de l'Article".'</a>';
- echo '<li id="1">'.$des.'</li>';
+  function getRSS($url)
+  {
+  $url1 = "https://www.01net.com/rss/actualites/science-recherche/"; /* insérer ici l'adresse du flux RSS de votre choix */
+  $url;
+  $rss = simplexml_load_file($url);
+  echo '<ul class = "collection with-header">';
+  $counter = (int)0;
+  $nbArticles = (int)$_POST['nombre'];
+  foreach ($rss->channel->item as $item)
+  { 
+  $datetime = date_create($item->pubDate);
+  $date = date_format($datetime, 'd M Y, H\hi');
+  $img = $item->enclosure['url'];
+  $des = strval($item->description);
+  echo '<li><img src="'.$img.'" class="pics" width="40" height="30"/></li>';
+  echo '<li>'.$item->title.'</li>';
+  echo '<li>'.$date.'</li>';
+  echo '<li value="'.$item->link.'"><a href="'.$item->link.'">'.'Aller vers Article'.'</a></li>';
+  // Modal Trigger
+  echo '<a class="waves-effect waves-light btn blue lighten-1 modal-trigger" href="#modes" value="'.$des.'">'."Ouvrir description de l'Article".'</a>';
+  echo '<li id="1">'.$des.'</li>';
+  $counter++;
+  if ($counter === $nbArticles)
+    {
+    break;
+    }
+  }
 }
 echo '</ul>';
 }
+
 ?>
 <!-- Fin Méthode-->
-<?php
-$color = $_POST['couleur'];
-var_dump($color);
-?>
-
-
 <?php if (isset($_POST["newform"])) { ?>
-  <div id="colorD"><?=$_POST['couleur']?></div>
     <div class="row">
     <div class="col s8 m8 l8 offset-s2 offset-m2 offset-l2 blue lighten-1"><p class="center">Super Rss Reader</p></div>
     </div>
@@ -151,17 +164,6 @@ $(document).ready(function(){
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-<script>
-$(document).ready(function getParameters()
-{
-    var newColor = $('#colorD').text();
-    alert(newColor); 
-    $(body).css('background-color',newColor);
-    alert($(body).css('background-color').val());
-}
-});
-</script>
 <!-- Fin du script pour la modal -->
 </body>
 </html>
