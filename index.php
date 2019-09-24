@@ -1,10 +1,12 @@
 <?php
 session_start();
+if (isset($_POST['newform']))
+{
 $_SESSION['prenom'] = $_POST['prenom'];
 $_SESSION['nom'] = $_POST['nom'];
 $_SESSION['couleur'] = $_POST['couleur'];
 $_SESSION['nombre'] = $_POST['nombre'];
-
+}
 ?>
 <!DOCTYPE html>
   <html>
@@ -16,7 +18,6 @@ $_SESSION['nombre'] = $_POST['nombre'];
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- For the modal -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -38,9 +39,9 @@ $_SESSION['nombre'] = $_POST['nombre'];
 <label>Prénom</label><br><input type="text" name="nom" /><br>
 <div class="input-field col s12">
         <select id="colorChoice" name="couleur">
-            <option value="#d6d6c2">Noir</option>
-            <option value="#ff9999">Rouge</option>
             <option value="#b3f0ff">Bleu</option>
+            <option value="#d6d6c2">Gris</option>
+            <option value="#ffe082">Ambre</option>
         </select>
         <label>Choix du design</label>
 </div>
@@ -51,7 +52,7 @@ $_SESSION['nombre'] = $_POST['nombre'];
 </form>
 <!--  -->
 <?php } ?>
-<!--Changememnt de la couleur du document-->
+<!--Changement de la couleur du document-->
 <?php
 if(isset($_POST['couleur']))
 {
@@ -83,7 +84,7 @@ if(isset($_POST['nombre']))
   echo '<li>'.$date.'</li>';
   echo '<li value="'.$item->link.'"><a href="'.$item->link.'">'.'Aller vers Article'.'</a></li>';
   // Modal Trigger
-  echo '<a class="waves-effect waves-light btn blue lighten-1 modal-trigger" href="#modes" value="'.$des.'">'."Ouvrir description de l'Article".'</a>';
+  echo '<a class="waves-effect waves-light btn blue lighten-1 modal-trigger" href="#modes" value="'.$des.'">'.'Description de l\'Article'.'</a>';
   echo '<li id="1">'.$des.'</li>';
   $counter++;
   if ($counter === $nbArticles)
@@ -94,7 +95,6 @@ if(isset($_POST['nombre']))
 }
 echo '</ul>';
 }
-
 ?>
 <!-- Fin Méthode-->
 <?php if (isset($_POST["newform"])) { ?>
@@ -103,16 +103,23 @@ echo '</ul>';
     </div>
  <!-- Navbar -->
  <nav>
-     <div class="nav-wrapper">
+     <div class="nav-wrapper indigo darken-4 text-lime accent-2">
      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="sass.html">Culture & Médias</a></li>
-        <li><a href="badges.html">Technologies</a></li>
-        <li><a href="collapsible.html">Science & Recherhe</a></li>
+        <li class="indigo lighten-4"><a href="#"><i class="material-icons right">local_library</i>Culture</a></li>
+        <li class="indigo lighten-3"><a href="#"><i class="material-icons right">toys</i>Technologies</a></li>
+        <li class="indigo lighten-2"><a href="#"><i class="material-icons right">nature_people</i>Sciences</a></li>
       </ul>
        <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html"><?=$_SESSION['prenom']?> <?=$_SESSION['nom']?></a></li>
-        <li><a href="badges.html">Paramètres</a></li>
-        <li><a href="badges.html">Déconnexion</a></li>
+        <li class="indigo lighten-1"><a href="#"><i class="material-icons left">tag_faces</i> Bienvenue <?=$_SESSION['prenom']?> <?=$_SESSION['nom']?> !</a></li>
+        <li>
+        <ul id="dropdown2" class="dropdown-content">
+          <li><a href="#" value="#b3f0ff">Bleu</a></li>
+          <li><a href="#" value="#d6d6c2">Gris</a></li>
+          <li><a href="#" value="#ffe082">Ambre</a></li>
+        </ul>
+        <a class="btn dropdown-trigger" href="#!" data-target="dropdown2">Paramètres<i class="material-icons right">settings</i></a>      
+        </li>
+        <li class="light-blue darken-1"><a href="index.php">Déconnexion<i class="material-icons right">transfer_within_a_station</i></a></li>
       </ul>
     </div>
   </nav>
@@ -140,18 +147,20 @@ echo '</ul>';
       </p>      
     </div>
     <div class="modal-footer">
-      <a href="toto" class="modal-action modal-close btn teal lighten-1" id="urlA">Aller vers l'article</a>
-      <a href="index.php" class="modal-action modal-close btn teal darken-2">Fermer</a>
+      <a href="#" class="modal-action modal-close btn teal lighten-1" id="urlA">Aller vers l'article</a>
+      <a href="#" class="modal-action modal-close btn teal darken-2">Fermer</a>
     </div>
   </div>
 </div>
 <?php } ?>
 <!-- Script pour ouvrir modal -->
 <script>
+// Liste & dropdown
 $(document).ready(function () {
       $('select').formSelect();
+      $('.dropdown-trigger').dropdown();
     });
-
+// Modal
 $(document).ready(function(){
   $('a').click(function(){
   var dis = $(this).attr('value');
@@ -161,6 +170,14 @@ $(document).ready(function(){
   $('.modal').modal();
    });
 });
+// Couleurs
+$(document).ready(function() {
+  $('a').click(function() {
+    var choice = $(this).attr('value');
+    $('body').css('background-color', choice);
+  });
+});
+
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
