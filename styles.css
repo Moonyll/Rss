@@ -3,3 +3,38 @@ body
 font-family: Arial;
 font-weight:bold;
 }
+nav ul li a,h3{
+color:#fff59d;
+}
+form
+{
+background-color: #0097a7;
+margin-top:5%;
+margin-bottom:15%;
+margin-left:25%;
+margin-right:25%;
+color:white;
+font-size: 15px;
+text-align: center;
+border-style:solid;
+border-color: white;
+border-width: 5px;
+}
+.title
+{
+margin-top:2%;
+font-size: 25px; 
+color :blue !important;
+text-align: center;
+}
+input
+{
+font-size: 30px;
+background-color: #006064;
+}
+.labels
+{
+text-align: center;
+font-size: 15px;
+color:white;
+}

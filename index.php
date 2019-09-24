@@ -32,20 +32,22 @@ $_SESSION['nombre'] = $_POST['nombre'];
 <!-- Formulaire Connexion -->
 <?php if (!isset($_POST["newform"])) { ?>
 <!--  -->
+<div class="title">Bienvenue sur la page Super Rss Reader !</div>
 <form id="newfr" method="post" action="index.php">
 <fieldset>
         <legend>Connexion</legend>
-<label>Nom</label><br><input type="text" name="prenom" /><br>
-<label>Prénom</label><br><input type="text" name="nom" /><br>
-<div class="input-field col s12">
-        <select id="colorChoice" name="couleur">
-            <option value="#b3f0ff">Bleu</option>
-            <option value="#d6d6c2">Gris</option>
-            <option value="#ffe082">Ambre</option>
+<label class="labels"><i class="material-icons left">account_circle</i>Nom</label><br><input type="text" name="prenom" /><br>
+<label class="labels"><i class="material-icons left">account_circle</i>Prénom</label><br><input type="text" name="nom" /><br>
+<div class="col s12 labels">
+<label class="labels"><i class="material-icons left">brush</i>Choix du theme</label>        
+        <select class=labels id="colorChoice" name="couleur">
+            <option class="labels" value="#b3f0ff">Bleu</option>
+            <option class="labels" value="#d6d6c2">Gris</option>
+            <option class="labels" value="#ffe082">Ambre</option>
         </select>
-        <label>Choix du design</label>
+        <label class="labels">Choix du theme</label>
 </div>
-<label>Nombre d'articles</label><br><input type="number" name="nombre" min="3" max="8" step="1"/><br>
+<label class="labels"><i class="material-icons left">library_books</i>Nombre d'articles</label><br><input type="number" name="nombre" min="3" max="8" step="1"/><br>
 <br>
 <input type="submit" name="newform" value="Se Connecter" id="formulaire">
 </fieldset>
@@ -58,6 +60,10 @@ if(isset($_POST['couleur']))
 {
 $color = $_POST['couleur'];
 echo '<body style="background-color: '.$color.'">';
+}
+else
+{
+echo '<body style="background-color: #81d4fa">';
 }
 ?>
 <!-- Méthode pour récupérer un flux rss-->
@@ -99,11 +105,11 @@ echo '</ul>';
 <!-- Fin Méthode-->
 <?php if (isset($_POST["newform"])) { ?>
     <div class="row">
-    <div class="col s8 m8 l8 offset-s2 offset-m2 offset-l2 blue lighten-1"><p class="center">Super Rss Reader</p></div>
+    <h3 class="col s8 m8 l8 offset-s2 offset-m2 offset-l2 blue teal lighten-3"><p class="center">Super Rss Reader</p></h1>
     </div>
  <!-- Navbar -->
  <nav>
-     <div class="nav-wrapper indigo darken-4 text-lime accent-2">
+     <div class="nav-wrapper indigo darken-4">
      <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li class="indigo lighten-4"><a href="#"><i class="material-icons right">local_library</i>Culture</a></li>
         <li class="indigo lighten-3"><a href="#"><i class="material-icons right">toys</i>Technologies</a></li>
@@ -112,10 +118,10 @@ echo '</ul>';
        <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li class="indigo lighten-1"><a href="#"><i class="material-icons left">tag_faces</i> Bienvenue <?=$_SESSION['prenom']?> <?=$_SESSION['nom']?> !</a></li>
         <li>
-        <ul id="dropdown2" class="dropdown-content">
-          <li><a href="#" value="#b3f0ff">Bleu</a></li>
-          <li><a href="#" value="#d6d6c2">Gris</a></li>
-          <li><a href="#" value="#ffe082">Ambre</a></li>
+        <ul id="dropdown2" class="dropdown-content text-blue-grey darken-4">
+          <li class="blue lighten-5"><a href="#" value="#b3f0ff">Bleu<i class="material-icons right">stars</i></a></li>
+          <li class="grey lighten-2"><a href="#" value="#d6d6c2">Gris<i class="material-icons right">stars</i></a></li>
+          <li class="amber lighten-3"><a href="#" value="#ffe082">Ambre<i class="material-icons right">stars</i></a></li>
         </ul>
         <a class="btn dropdown-trigger" href="#!" data-target="dropdown2">Paramètres<i class="material-icons right">settings</i></a>      
         </li>
