@@ -2,13 +2,16 @@ body
 {
 font-family: Arial;
 font-weight:bold;
+background-image: url('astronomy.jpg');
+background-repeat: no-repeat;
+background-size: cover;
 }
 nav ul li a,h3{
 color:#fff59d;
 }
 form
 {
-background-color: #0097a7;
+background-color: #1a237e;
 margin-top:5%;
 margin-bottom:15%;
 margin-left:25%;
@@ -24,17 +27,22 @@ border-width: 5px;
 {
 margin-top:2%;
 font-size: 25px; 
-color :blue !important;
+color :#fff59d !important;
 text-align: center;
 }
 input
 {
 font-size: 30px;
-background-color: #006064;
+background-color: #424242;
 }
 .labels
 {
 text-align: center;
 font-size: 15px;
 color:white;
+}
+.labell
+{
+text-align: center;
+font-size: 65px;
 }
