@@ -29,7 +29,28 @@ margin-top:2%;
 font-size: 25px; 
 color :#fff59d !important;
 text-align: center;
+position: relative;
+animation-duration: 3s;
+animation-name: slidein; 
 }
+/* Standard syntax */
+@keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 300%; 
+    }
+  
+    75% {
+      font-size: 300%;
+      margin-left: 25%;
+      width: 150%;
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }
 input
 {
 font-size: 30px;
@@ -45,4 +66,16 @@ color:white;
 {
 text-align: center;
 font-size: 65px;
+}
+.labbel
+{
+text-align: center;
+font-size: 30px;
+color:blue;
+}
+.collec
+{
+border-style:solid;
+border-color: white;
+border-width: 2px;
 }
