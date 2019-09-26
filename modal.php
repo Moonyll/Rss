@@ -6,8 +6,8 @@
       </p>      
     </div>
     <div class="modal-footer">
-      <a href="#" class="modal-action modal-close btn teal lighten-1" id="urlA">Aller vers l'article</a>
-      <a href="#!" class="modal-action modal-close btn teal darken-2">Fermer</a>
+      <a href="#" class="btn teal lighten-1" id="urlA">Aller vers l'article</a>
+      <a class="modal-action modal-close btn teal darken-2" id="closeM">Fermer</a>
     </div>
   </div>
 </div>

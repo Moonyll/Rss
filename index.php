@@ -20,7 +20,7 @@
       <!-- End Region -->
       <?php if (isset($_POST["newform"]) && !empty($_POST["nom"]) && !empty($_POST["prenom"]) ) { ?>
           <div class="row">
-          <h3 class="col s8 m8 l8 offset-s2 offset-m2 offset-l2 blue teal lighten-3"><p class="center">Super Rss Reader</p></h1>
+          <h3 class="col s8 m8 l8 offset-s2 offset-m2 offset-l2 blue teal lighten-3 titre"><p class="center">Super Rss Reader</p></h1>
           </div>
       <!-- Start Region - Navbar-->
       <?php include('nav.php');?>

@@ -2,7 +2,9 @@
 if(isset($_POST['couleur']))
 {
 $color = $_POST['couleur'];
-echo '<body style="background-image:none; background-color: '.$color.'">';
+$themes = array("Sea" => "sea.jpg", "Night" => "night.jpg", "Sand" => "sand.jpg");
+$urlImage =$themes[$color];
+echo '<body style="background-image:url('.$urlImage.');">';
 }
 else
 {

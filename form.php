@@ -8,9 +8,9 @@
 <div class="col s12 labels">
 <label class="labels"><i class="material-icons left">brush</i>Choix du theme</label>        
         <select class=labels id="colorChoice" name="couleur">
-            <option class="labels" value="#b3f0ff">Bleu</option>
-            <option class="labels" value="#d6d6c2">Gris</option>
-            <option class="labels" value="#ffe082">Ambre</option>
+            <option class="labels" value="Sea">Sea</option>
+            <option class="labels" value="Night">Night</option>
+            <option class="labels" value="Sand">Sand</option>
         </select>
         <label class="labels">Choix du theme</label>
 </div>

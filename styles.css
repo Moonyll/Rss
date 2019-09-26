@@ -16,12 +16,13 @@ margin-top:5%;
 margin-bottom:15%;
 margin-left:25%;
 margin-right:25%;
-color:white;
+color:#fff59d;
 font-size: 15px;
 text-align: center;
 border-style:solid;
-border-color: white;
+border-color: #fff59d;
 border-width: 5px;
+box-shadow: 10px 10px black;
 }
 .title
 {
@@ -60,7 +61,7 @@ background-color: #424242;
 {
 text-align: center;
 font-size: 15px;
-color:white;
+color:#fff59d;
 }
 .labell
 {
@@ -75,7 +76,52 @@ color:blue;
 }
 .collec
 {
+background-color: #80cbc4;
+background-image: url('back.jpg');
+background-repeat: no-repeat;
+background-size: cover;
 border-style:solid;
 border-color: white;
 border-width: 2px;
+box-shadow: 3px 3px black;
+}
+.brd
+{
+border-bottom-style:solid;
+border-bottom-color: white;
+border-bottom-width: 2px;
+}
+.item
+{
+text-align:center;
+}
+.desc
+{
+color:#fff59d;
+}
+.btn-small
+{
+display:block;
+left:200px;
+}
+.titre
+{
+border-style:solid;
+border-color: blue;;
+border-width: 5px;
+background-image: url('astronomy.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+box-shadow: 3px 3px black;
+text-shadow: 2px 2px black;
+}
+.material-icons
+{
+  text-shadow: 2px 2px black;
+}
+.collect
+{
+color:#fff59d;
+font-size: 25px;
+text-shadow: 2px 2px black;
 }
